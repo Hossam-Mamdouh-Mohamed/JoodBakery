@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منتجات — مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap RTL CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/products.css">
+</head>
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">0</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Hero Section ======= -->
+  <section class="hero-section text-center py-5">
+    <div class="container">
+      <h1 class="hero-title mb-4">منتجاتنا المميزة</h1>
+      <p class="hero-subtitle mb-5">استمتع بأشهى المخبوزات والحلويات الطازجة — نُحضّرها بحب، ونقدّمها بفخر.</p>
+      
+      <!-- Search + Filters -->
+      <div class="row g-3 align-items-center justify-content-center">
+        <div class="col-lg-8">
+          <div class="row g-2">
+            <div class="col-md-8">
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input id="searchInput" type="search" class="form-control" placeholder="ابحث عن منتج (مثال: كيك، دونات...)">
+              </div>
+            </div>
+            <div class="col-md-4 text-start">
+              <select id="categorySelect" class="form-select">
+                <option value="all">الكل</option>
+                <!-- categories dynamically inserted -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Products Section ======= -->
+  <section class="py-5 bg-tint">
+    <div class="container">
+      <div id="productsInfo" class="mb-4 text-center text-muted"></div>
+
+      <div id="featuredGrid" class="row g-4">
+        <!-- products injected here -->
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-5">
+        <ul id="pagination" class="pagination justify-content-center flex-wrap gap-2"></ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ======= About Section ======= -->
+  <!-- <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1542367597-31f4d1d8f74a" alt="عن جود" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+          <h3 class="mb-3">عن مخبوزات جود</h3>
+          <p class="text-muted">نُقدّم أفضل المخبوزات والحلويات المحضّرة يومياً بمكونات طازجة وجودة عالية — هدفنا إسعاد كل زبون بطعم مميّز.</p>
+          <a href="#" class="btn btn-outline-primary">المزيد عنا</a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+ <!-- ======= Footer ======= -->
+<footer id="contact" class="footer">
+  <div class="container">
+    <div class="row gy-4 align-items-start">
+      <!-- About Section -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="footer-title">مخبوزات جود</h5>
+        <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+          <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="footer-title">روابط سريعة</h5>
+        <ul class="footer-links">
+          <li><a href="#"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+          <li><a href="#about"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+          <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+          <li><a href="#contact"><i class="bi bi-chevron-left"></i> تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-5 col-md-12">
+        <h5 class="footer-title">تواصل معنا</h5>
+        <div class="contact-info-grid">
+          <div class="contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>شارع الجمهورية، سوهاج، مصر</span>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <span><a href="tel:+201005551234">0100-555-1234</a></span>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-clock-fill"></i>
+            <span>يوميًا: 8 ص - 11 م</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+    
+    <div class="footer-bottom">
+      <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+    </div>
+  </div>
+</footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- App script -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

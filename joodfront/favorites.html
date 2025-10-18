@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المفضلة | مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">0</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Favorites Hero Section ======= -->
+  <section class="hero-section text-center py-4">
+    <div class="container">
+      <h1 class="hero-title mb-3">منتجاتي المفضلة</h1>
+      <p class="hero-subtitle">جميع المنتجات التي أضفتها إلى قائمة المفضلة</p>
+    </div>
+  </section>
+
+  <!-- ======= Favorites Content ======= -->
+  <section class="py-5">
+    <div class="container">
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-5" style="display: none;">
+        <div class="empty-favorites-icon mb-4">
+          <i class="bi bi-heart display-1 text-muted"></i>
+        </div>
+        <h3 class="mb-3">قائمة المفضلة فارغة</h3>
+        <p class="text-muted mb-4">لم تقم بإضافة أي منتجات إلى المفضلة بعد</p>
+        <a href="products.html" class="btn btn-primary btn-lg">
+          <i class="bi bi-arrow-left me-2"></i>تصفح المنتجات
+        </a>
+      </div>
+
+      <!-- Favorites Grid -->
+      <div id="favoritesGrid" class="row g-4">
+        <!-- Favorites will be populated by JavaScript -->
+      </div>
+
+      <!-- Clear All Favorites -->
+      <div class="text-center mt-5" id="clearAllSection">
+        <button class="btn btn-outline-danger" onclick="clearAllFavorites()">
+          <i class="bi bi-trash me-2"></i>مسح جميع المفضلة
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">مخبوزات جود</h5>
+          <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+            <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+            <li><a href="favorites.html"><i class="bi bi-chevron-left"></i> المفضلة</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5 col-md-12">
+          <h5 class="footer-title">تواصل معنا</h5>
+          <div class="contact-info-grid">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>شارع الجمهورية، سوهاج، مصر</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <span><a href="tel:+201005551234">0100-555-1234</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>يوميًا: 8 ص - 11 م</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Favorites JavaScript -->
+  <script>
+    let favoriteItems = [];
+    let allProducts = [];
+
+    // Load products from JSON
+    async function loadProductsData() {
+      try {
+        const response = await fetch('assets/js/products.json');
+        allProducts = await response.json();
+        
+        // Load some sample favorites (first 3 products)
+        favoriteItems = allProducts.slice(0, 3).map(product => ({
+          id: product.id,
+          name: product.title,
+          price: product.price,
+          image: product.img,
+          description: product.desc,
+          category: product.category
+        }));
+        
+        displayFavorites();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback to default favorites
+        favoriteItems = [
+          {
+            id: 1,
+            name: 'خبز طازج يومي',
+            price: 25,
+            image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587',
+            description: 'خبز طازج يُحضر يومياً من أجود أنواع الدقيق'
+          },
+          {
+            id: 2,
+            name: 'كيك الشوكولاتة',
+            price: 64,
+            image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a',
+            description: 'كيك بالشوكولاتة البلجيكية مع كريمة فانيليا'
+          },
+          {
+            id: 3,
+            name: 'معجنات متنوعة',
+            price: 45,
+            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb',
+            description: 'مجموعة من المعجنات الطازجة بالجبن والزعتر'
+          }
+        ];
+        displayFavorites();
+      }
+    }
+
+    function displayFavorites() {
+      const favoritesGrid = document.getElementById('favoritesGrid');
+      
+      if (favoriteItems.length === 0) {
+        favoritesGrid.innerHTML = '';
+        checkEmptyState();
+        return;
+      }
+      
+      favoritesGrid.innerHTML = favoriteItems.map(item => createFavoriteCard(item)).join('');
+      checkEmptyState();
+    }
+
+    function createFavoriteCard(item) {
+      const isInStock = Math.random() > 0.2; // 80% chance of being in stock
+      
+      return `
+        <div class="col-lg-4 col-md-6">
+          <div class="card product-card h-100" data-product-id="${item.id}">
+            <div class="product-image">
+              <img src="${item.image}" class="card-img-top" alt="${item.name}">
+              <div class="product-badge bg-danger">مفضل</div>
+              <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 favorite-btn active" onclick="removeFromFavorites(this)">
+                <i class="bi bi-heart-fill"></i>
+              </button>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${item.name}</h5>
+              <p class="card-text text-muted">${item.description}</p>
+              <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="price">${item.price} ج.م</span>
+                  <div class="rating">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary flex-grow-1" onclick="addToCartFromFavorites(this)" ${!isInStock ? 'disabled' : ''}>
+                    <i class="bi bi-cart-plus me-1"></i>${isInStock ? 'أضف للسلة' : 'غير متوفر'}
+                  </button>
+                  <a href="product-details.html?id=${item.id}" class="btn btn-outline-primary">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function removeFromFavorites(button) {
+      const productCard = button.closest('.col-lg-4');
+      const productName = productCard.querySelector('.card-title').textContent;
+      
+      if (confirm(`هل تريد إزالة "${productName}" من المفضلة؟`)) {
+        productCard.remove();
+        updateFavoriteBadge();
+        checkEmptyState();
+      }
+    }
+
+    function addToCartFromFavorites(button) {
+      const productCard = button.closest('.product-card');
+      const productName = productCard.querySelector('.card-title').textContent;
+      const productPrice = productCard.querySelector('.price').textContent;
+      
+      // Simulate adding to cart
+      alert(`تم إضافة "${productName}" إلى السلة`);
+      
+      // Update cart badge (simulate)
+      const cartBadge = document.getElementById('cartBadge');
+      if (cartBadge) {
+        const currentCount = parseInt(cartBadge.textContent) || 0;
+        cartBadge.textContent = currentCount + 1;
+        cartBadge.style.display = 'block';
+      }
+    }
+
+    function clearAllFavorites() {
+      if (confirm('هل أنت متأكد من مسح جميع المنتجات من المفضلة؟')) {
+        document.getElementById('favoritesGrid').innerHTML = '';
+        updateFavoriteBadge();
+        checkEmptyState();
+      }
+    }
+
+    function updateFavoriteBadge() {
+      const favoriteBadge = document.getElementById('favoriteBadge');
+      const favoriteItems = document.querySelectorAll('#favoritesGrid .col-lg-4');
+      
+      if (favoriteBadge) {
+        favoriteBadge.textContent = favoriteItems.length;
+        favoriteBadge.style.display = favoriteItems.length > 0 ? 'block' : 'none';
+      }
+    }
+
+    function checkEmptyState() {
+      const favoritesGrid = document.getElementById('favoritesGrid');
+      const emptyState = document.getElementById('emptyState');
+      const clearAllSection = document.getElementById('clearAllSection');
+      
+      if (favoritesGrid.children.length === 0) {
+        emptyState.style.display = 'block';
+        clearAllSection.style.display = 'none';
+      } else {
+        emptyState.style.display = 'none';
+        clearAllSection.style.display = 'block';
+      }
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProductsData();
+      updateFavoriteBadge();
+      checkEmptyState();
+    });
+  </script>
+
+</body>
+
+</html>

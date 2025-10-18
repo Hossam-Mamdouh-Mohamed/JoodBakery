@@ -1,0 +1,172 @@
+/* ================================
+   Jood Bakery – Products Page CSS
+   ================================ */
+
+/* Import main styles from styles.css */
+@import url('styles.css');
+
+/* Override specific styles for products page */
+
+/* Product cards styling to match index page */
+.product-card {
+  background: #fff;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(31, 43, 54, 0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(31, 43, 54, 0.09);
+}
+
+/* Product image container */
+.product-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card img {
+  height: 200px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.product-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Stock status text */
+.stock-status {
+  margin-bottom: 0.5rem;
+}
+
+.stock-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.stock-text.text-success {
+  color: #28a745 !important;
+}
+
+.stock-text.text-danger {
+  color: #dc3545 !important;
+}
+
+.stock-text i {
+  font-size: 0.8rem;
+}
+
+/* Product details */
+.card-title {
+  color: var(--brand-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.text-muted.small {
+  font-size: 0.9rem;
+}
+
+/* Price styling */
+.price {
+  font-weight: 800;
+  color: var(--brand-primary);
+  font-size: 1.1rem;
+}
+
+/* Rating stars */
+.rating {
+  display: flex;
+  gap: 2px;
+}
+
+.rating i {
+  font-size: 0.9rem;
+}
+
+/* Button styling */
+.btn-primary {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: #000;
+}
+
+.btn-primary:disabled {
+  background: #6c757d;
+  border-color: #6c757d;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-outline-primary {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+/* Pagination styles */
+.pagination .page-link {
+  border-radius: 0.6rem;
+  color: var(--brand-dark);
+  border: 1px solid #dee2e6;
+  padding: 0.5rem 0.75rem;
+}
+
+.pagination .page-item.active .page-link {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #fff;
+}
+
+.pagination .page-link:hover {
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: #000;
+}
+
+/* Search and filter styling */
+.input-group-text {
+  background: var(--brand-primary);
+  color: #fff;
+  border-color: var(--brand-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 0.2rem rgba(47, 95, 118, 0.25);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .product-card img {
+    height: 160px;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}

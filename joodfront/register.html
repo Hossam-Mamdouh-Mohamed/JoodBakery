@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إنشاء حساب | مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">0</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Register Section ======= -->
+  <section class="py-5 register-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="register-card">
+            <div class="register-card-body">
+              <!-- Register Header -->
+              <div class="text-center mb-4">
+                <div class="register-icon mb-3">
+                  <div class="bakery-icon">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                </div>
+                <h2 class="register-title mb-2">انضم إلى عائلة جود</h2>
+                <p class="register-subtitle">أنشئ حسابك واستمتع بتجربة تسوق متميزة</p>
+                <div class="welcome-decoration">
+                  <span class="decoration-line"></span>
+                  <i class="bi bi-heart-fill"></i>
+                  <span class="decoration-line"></span>
+                </div>
+              </div>
+
+              <!-- Register Form -->
+              <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="row g-3">
+                  <!-- First Name -->
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">الاسم الأول</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      <input type="text" class="form-control" id="firstName" name="firstName" 
+                             placeholder="أدخل اسمك الأول" required>
+                    </div>
+                  </div>
+
+                  <!-- Last Name -->
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">الاسم الأخير</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      <input type="text" class="form-control" id="lastName" name="lastName" 
+                             placeholder="أدخل اسمك الأخير" required>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                      <input type="email" class="form-control" id="email" name="email" 
+                             placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">رقم الهاتف</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                      <input type="tel" class="form-control" id="phone" name="phone" 
+                             placeholder="0100-000-0000" required>
+                    </div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="col-md-6">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                      <input type="password" class="form-control" id="password" name="password" 
+                             placeholder="أدخل كلمة المرور" required>
+                      <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
+                        <i class="bi bi-eye" id="passwordToggle"></i>
+                      </button>
+                    </div>
+                    <div class="form-text">يجب أن تكون كلمة المرور 8 أحرف على الأقل</div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="col-md-6">
+                    <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" 
+                             placeholder="أعد إدخال كلمة المرور" required>
+                      <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirmPassword')">
+                        <i class="bi bi-eye" id="confirmPasswordToggle"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Address -->
+                  <div class="col-12">
+                    <label for="address" class="form-label">العنوان</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                      <textarea class="form-control" id="address" name="address" rows="2" 
+                                placeholder="أدخل عنوانك الكامل" required></textarea>
+                    </div>
+                  </div>
+
+                  <!-- City -->
+                  <div class="col-md-6">
+                    <label for="city" class="form-label">المدينة</label>
+                    <select class="form-select" id="city" name="city" required>
+                      <option value="">اختر المدينة</option>
+                      <option value="sohag">سوهاج</option>
+                      <option value="luxor">الأقصر</option>
+                      <option value="assiut">أسيوط</option>
+                      <option value="cairo">القاهرة</option>
+                      <option value="alexandria">الإسكندرية</option>
+                    </select>
+                  </div>
+
+                  <!-- Birth Date -->
+                  <div class="col-md-6">
+                    <label for="birthDate" class="form-label">تاريخ الميلاد</label>
+                    <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+                  </div>
+
+                  <!-- Gender -->
+                  <div class="col-12">
+                    <label class="form-label">الجنس</label>
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                          <label class="form-check-label" for="male">
+                            <i class="bi bi-gender-male me-1"></i>ذكر
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                          <label class="form-check-label" for="female">
+                            <i class="bi bi-gender-female me-1"></i>أنثى
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Terms and Conditions -->
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                      <label class="form-check-label" for="terms">
+                        أوافق على <a href="#" class="text-primary">الشروط والأحكام</a> و 
+                        <a href="#" class="text-primary">سياسة الخصوصية</a>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Newsletter -->
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                      <label class="form-check-label" for="newsletter">
+                        أريد تلقي العروض والأخبار عبر البريد الإلكتروني
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-person-plus me-2"></i>إنشاء الحساب
+                  </button>
+                </div>
+              </form>
+
+              <!-- Divider -->
+              <div class="divider my-4">
+                <span class="divider-text">أو</span>
+              </div>
+
+              <!-- Social Register -->
+              <div class="social-register">
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-primary" onclick="socialRegister('google')">
+                    <i class="bi bi-google me-2"></i>التسجيل بـ Google
+                  </button>
+                  <button class="btn btn-outline-primary" onclick="socialRegister('facebook')">
+                    <i class="bi bi-facebook me-2"></i>التسجيل بـ Facebook
+                  </button>
+                </div>
+              </div>
+
+              <!-- Login Link -->
+              <div class="text-center mt-4">
+                <p class="mb-0">لديك حساب بالفعل؟ 
+                  <a href="login.html" class="text-primary text-decoration-none fw-bold">تسجيل الدخول</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Benefits Section ======= -->
+  <section class="py-5 bg-tint">
+    <div class="container">
+      <h3 class="section-title text-center mb-5">مميزات الانضمام إلى جود</h3>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="benefit-card text-center">
+            <div class="benefit-icon mb-3">
+              <i class="bi bi-truck display-4 text-primary"></i>
+            </div>
+            <h5 class="mb-2">توصيل مجاني</h5>
+            <p class="text-muted small">للطلبات فوق 100 ج.م</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="benefit-card text-center">
+            <div class="benefit-icon mb-3">
+              <i class="bi bi-gift display-4 text-primary"></i>
+            </div>
+            <h5 class="mb-2">عروض حصرية</h5>
+            <p class="text-muted small">خصومات وعروض خاصة</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="benefit-card text-center">
+            <div class="benefit-icon mb-3">
+              <i class="bi bi-heart display-4 text-primary"></i>
+            </div>
+            <h5 class="mb-2">قائمة المفضلة</h5>
+            <p class="text-muted small">احفظ منتجاتك المفضلة</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="benefit-card text-center">
+            <div class="benefit-icon mb-3">
+              <i class="bi bi-star display-4 text-primary"></i>
+            </div>
+            <h5 class="mb-2">نقاط الولاء</h5>
+            <p class="text-muted small">احصل على نقاط لكل عملية شراء</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">مخبوزات جود</h5>
+          <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+            <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+            <li><a href="cart.html"><i class="bi bi-chevron-left"></i> سلة التسوق</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5 col-md-12">
+          <h5 class="footer-title">تواصل معنا</h5>
+          <div class="contact-info-grid">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>شارع الجمهورية، سوهاج، مصر</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <span><a href="tel:+201005551234">0100-555-1234</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>يوميًا: 8 ص - 11 م</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Register JavaScript -->
+  <script>
+    function togglePassword(fieldId) {
+      const passwordInput = document.getElementById(fieldId);
+      const passwordToggle = document.getElementById(fieldId + 'Toggle');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordToggle.className = 'bi bi-eye-slash';
+      } else {
+        passwordInput.type = 'password';
+        passwordToggle.className = 'bi bi-eye';
+      }
+    }
+
+    function handleRegister(event) {
+      event.preventDefault();
+      
+      const formData = new FormData(event.target);
+      const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+      
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        alert('كلمة المرور وتأكيد كلمة المرور غير متطابقتين');
+        return;
+      }
+      
+      // Validate password length
+      if (password.length < 8) {
+        alert('كلمة المرور يجب أن تكون 8 أحرف على الأقل');
+        return;
+      }
+      
+      // Validate terms acceptance
+      if (!formData.get('terms')) {
+        alert('يجب الموافقة على الشروط والأحكام');
+        return;
+      }
+      
+      // Simulate registration process
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>جاري إنشاء الحساب...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        // Simulate successful registration
+        alert('تم إنشاء حسابك بنجاح! مرحباً بك في عائلة جود');
+        
+        // Redirect to login page
+        window.location.href = 'login.html';
+      }, 2000);
+    }
+
+    function socialRegister(provider) {
+      alert(`سيتم توجيهك للتسجيل عبر ${provider}`);
+      // Here you would integrate with actual social registration APIs
+    }
+
+    // Form validation
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('registerForm');
+      const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+      
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.value.trim() === '') {
+            this.classList.add('is-invalid');
+          } else {
+            this.classList.remove('is-invalid');
+          }
+        });
+      });
+
+      // Password confirmation validation
+      const confirmPassword = document.getElementById('confirmPassword');
+      const password = document.getElementById('password');
+      
+      confirmPassword.addEventListener('input', function() {
+        if (this.value !== password.value) {
+          this.classList.add('is-invalid');
+        } else {
+          this.classList.remove('is-invalid');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

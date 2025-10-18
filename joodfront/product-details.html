@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تفاصيل المنتج | مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">0</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Product Details Section ======= -->
+  <section class="py-5">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="products.html">المنتجات</a></li>
+          <li class="breadcrumb-item active" aria-current="page">تفاصيل المنتج</li>
+        </ol>
+      </nav>
+
+      <div class="row g-5">
+        <!-- Product Images -->
+        <div class="col-lg-6">
+          <div class="product-gallery">
+            <div class="main-image mb-3">
+              <img id="mainProductImage" src="" 
+                   alt="" class="img-fluid rounded shadow">
+              <div class="product-badge position-absolute top-0 end-0 m-3" id="productBadge">
+                <!-- Badge will be populated by JavaScript -->
+              </div>
+            </div>
+            <div class="thumbnail-images d-flex gap-2" id="thumbnailContainer">
+              <!-- Thumbnails will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-lg-6">
+          <div class="product-info">
+            <h1 class="product-title mb-3" id="productTitle">جاري التحميل...</h1>
+            
+            <!-- Rating -->
+            <div class="rating mb-3">
+              <div class="stars d-inline-block me-3">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+              </div>
+              <span class="text-muted">(4.9) - 127 تقييم</span>
+            </div>
+
+            <!-- Price -->
+            <div class="price-section mb-4">
+              <h3 class="price text-primary mb-0" id="productPrice">0 ج.م</h3>
+              <small class="text-muted">السعر شامل الضريبة</small>
+            </div>
+
+            <!-- Description -->
+            <div class="description mb-4">
+              <h5 class="mb-3">وصف المنتج</h5>
+              <p class="text-muted" id="productDescription">
+                جاري تحميل وصف المنتج...
+              </p>
+            </div>
+
+            <!-- Stock Status -->
+            <div class="stock-status mb-4">
+              <div class="d-flex align-items-center" id="stockStatus">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <span class="text-success fw-bold">متوفر في المخزن</span>
+                <span class="text-muted ms-2">(15 قطعة متبقية)</span>
+              </div>
+            </div>
+
+            <!-- Quantity Selector -->
+            <div class="quantity-selector mb-4">
+              <label class="form-label">الكمية:</label>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-outline-secondary" onclick="decreaseQuantity()">
+                  <i class="bi bi-dash"></i>
+                </button>
+                <span class="mx-3 quantity-display" id="quantityDisplay">1</span>
+                <button class="btn btn-outline-secondary" onclick="increaseQuantity()">
+                  <i class="bi bi-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons mb-4">
+              <div class="row g-2">
+                <div class="col-md-8">
+                  <button class="btn btn-primary btn-lg w-100" id="addToCartBtn" onclick="addToCart()">
+                    <i class="bi bi-cart-plus me-2"></i>أضف للسلة
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-outline-danger btn-lg w-100" id="favoriteBtn" onclick="toggleFavorite()">
+                    <i class="bi bi-heart" id="favoriteIcon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Features -->
+            <div class="product-features">
+              <h5 class="mb-3">مميزات المنتج</h5>
+              <ul class="list-unstyled" id="productFeatures">
+                <li class="mb-2">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  طازج يومياً
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  مكونات طبيعية 100%
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  خالي من المواد الحافظة
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-check-circle text-success me-2"></i>
+                  مناسب للجميع
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="row mt-5">
+        <div class="col-12">
+          <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">
+                التفاصيل
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ingredients-tab" data-bs-toggle="tab" data-bs-target="#ingredients" type="button" role="tab">
+                المكونات
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                التقييمات
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="productTabContent">
+            <div class="tab-pane fade show active" id="details" role="tabpanel">
+              <div class="p-4">
+                <h5>تفاصيل المنتج</h5>
+                <p class="text-muted">
+                  خبز طازج يُحضر يومياً في مخبز جود باستخدام أجود أنواع الدقيق المستورد، 
+                  مع إضافة الخميرة الطبيعية والماء النقي. يتم العجن بالطرق التقليدية 
+                  والخبز في أفران حجرية للحصول على أفضل طعم وقوام.
+                </p>
+                <ul>
+                  <li>وزن القطعة: 500 جرام</li>
+                  <li>مدة الصلاحية: 3 أيام</li>
+                  <li>طريقة الحفظ: في مكان بارد وجاف</li>
+                  <li>مناسب للفطور والعشاء</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="ingredients" role="tabpanel">
+              <div class="p-4">
+                <h5>المكونات</h5>
+                <ul class="list-unstyled">
+                  <li><strong>دقيق القمح:</strong> 70%</li>
+                  <li><strong>الماء:</strong> 25%</li>
+                  <li><strong>الخميرة:</strong> 3%</li>
+                  <li><strong>الملح:</strong> 2%</li>
+                </ul>
+                <div class="alert alert-info">
+                  <i class="bi bi-info-circle me-2"></i>
+                  جميع المكونات طبيعية وخالية من المواد الحافظة
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel">
+              <div class="p-4">
+                <h5>تقييمات العملاء</h5>
+                <div class="review-item border-bottom pb-3 mb-3">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <strong>أحمد محمد</strong>
+                      <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                      </div>
+                    </div>
+                    <small class="text-muted">منذ يومين</small>
+                  </div>
+                  <p class="mt-2 mb-0">خبز ممتاز وطازج جداً، أنصح به بشدة</p>
+                </div>
+                <div class="review-item border-bottom pb-3 mb-3">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <strong>فاطمة علي</strong>
+                      <div class="stars">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star text-muted"></i>
+                      </div>
+                    </div>
+                    <small class="text-muted">منذ أسبوع</small>
+                  </div>
+                  <p class="mt-2 mb-0">جودة عالية وطعم أصيل</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Related Products ======= -->
+  <section class="py-5 bg-tint">
+    <div class="container">
+      <h3 class="section-title text-center mb-5">منتجات مشابهة</h3>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="card product-card h-100">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1584270354949-1fe52967d9a1" class="card-img-top" alt="خبز أسمر">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">خبز أسمر</h5>
+              <p class="card-text text-muted">خبز صحي بالحبوب الكاملة</p>
+              <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="price">30 ج.م</span>
+                  <div class="rating">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star text-muted"></i>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary flex-grow-1" onclick="addToCart(this)">أضف للسلة</button>
+                  <button class="btn btn-outline-danger favorite-btn" onclick="toggleFavorite(this)">
+                    <i class="bi bi-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add more related products as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">مخبوزات جود</h5>
+          <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+            <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+            <li><a href="favorites.html"><i class="bi bi-chevron-left"></i> المفضلة</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5 col-md-12">
+          <h5 class="footer-title">تواصل معنا</h5>
+          <div class="contact-info-grid">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>شارع الجمهورية، سوهاج، مصر</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <span><a href="tel:+201005551234">0100-555-1234</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>يوميًا: 8 ص - 11 م</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Product Details JavaScript -->
+  <script>
+    let quantity = 1;
+    let isFavorite = false;
+    let currentProduct = null;
+    let products = [];
+
+    // Load products from JSON
+    async function loadProducts() {
+      try {
+        const response = await fetch('assets/js/products.json');
+        products = await response.json();
+        loadProductDetails();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback to default product
+        loadDefaultProduct();
+      }
+    }
+
+    function loadProductDetails() {
+      // Get product ID from URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = parseInt(urlParams.get('id')) || 1;
+      
+      currentProduct = products.find(p => p.id === productId);
+      
+      if (currentProduct) {
+        displayProduct(currentProduct);
+      } else {
+        loadDefaultProduct();
+      }
+    }
+
+    function loadDefaultProduct() {
+      currentProduct = {
+        id: 1,
+        title: "كيك شوكولاتة",
+        category: "cakes",
+        price: 120.00,
+        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=60",
+        desc: "كيك شوكولاتة إسفنجية مع طبقة موس وشوكولاتة غنية.",
+        stock: 15,
+        inStock: true
+      };
+      displayProduct(currentProduct);
+    }
+
+    function displayProduct(product) {
+      // Update product title
+      document.getElementById('productTitle').textContent = product.title;
+      
+      // Update product price
+      document.getElementById('productPrice').textContent = `${product.price} ج.م`;
+      
+      // Update product description
+      document.getElementById('productDescription').textContent = product.desc;
+      
+      // Update main image
+      const mainImage = document.getElementById('mainProductImage');
+      mainImage.src = product.img;
+      mainImage.alt = product.title;
+      
+      // Update stock status
+      updateStockStatus(product);
+      
+      // Generate thumbnails (using same image for now, can be enhanced)
+      generateThumbnails(product);
+      
+      // Update product features based on category
+      updateProductFeatures(product);
+      
+      // Update breadcrumb
+      updateBreadcrumb(product);
+    }
+
+    function updateStockStatus(product) {
+      const stockStatus = document.getElementById('stockStatus');
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      
+      if (product.inStock && product.stock > 0) {
+        stockStatus.innerHTML = `
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span class="text-success fw-bold">متوفر في المخزن</span>
+          <span class="text-muted ms-2">(${product.stock} قطعة متبقية)</span>
+        `;
+        addToCartBtn.disabled = false;
+        addToCartBtn.innerHTML = '<i class="bi bi-cart-plus me-2"></i>أضف للسلة';
+      } else {
+        stockStatus.innerHTML = `
+          <i class="bi bi-x-circle-fill text-danger me-2"></i>
+          <span class="text-danger fw-bold">غير متوفر</span>
+        `;
+        addToCartBtn.disabled = true;
+        addToCartBtn.innerHTML = '<i class="bi bi-x-circle me-2"></i>غير متوفر';
+      }
+    }
+
+    function generateThumbnails(product) {
+      const thumbnailContainer = document.getElementById('thumbnailContainer');
+      const thumbnails = [
+        product.img,
+        product.img, // Using same image for now
+        product.img
+      ];
+      
+      thumbnailContainer.innerHTML = thumbnails.map((img, index) => `
+        <img src="${img}" 
+             alt="صورة ${index + 1}" 
+             class="img-thumbnail thumbnail-img ${index === 0 ? 'active' : ''}" 
+             onclick="changeMainImage(this)"
+             style="width: 80px; height: 80px; object-fit: cover;">
+      `).join('');
+    }
+
+    function updateProductFeatures(product) {
+      const features = getProductFeatures(product.category);
+      const featuresContainer = document.getElementById('productFeatures');
+      
+      featuresContainer.innerHTML = features.map(feature => `
+        <li class="mb-2">
+          <i class="bi bi-check-circle text-success me-2"></i>
+          ${feature}
+        </li>
+      `).join('');
+    }
+
+    function getProductFeatures(category) {
+      const featureMap = {
+        'cakes': ['طازج يومياً', 'مكونات طبيعية 100%', 'خالي من المواد الحافظة', 'مناسب للجميع'],
+        'donuts': ['طازج يومياً', 'مقرمش من الخارج', 'ناعم من الداخل', 'مغطى بالسكر'],
+        'cookies': ['مقرمش ولذيذ', 'مكونات طبيعية', 'حجم مناسب', 'مثالي مع الشاي'],
+        'tarts': ['قشرة هشة', 'حشوة كريمية', 'فواكه طازجة', 'مظهر جذاب'],
+        'croissant': ['قشرة ذهبية', 'طبقات متعددة', 'زبدة طبيعية', 'طعم فرنسي أصيل'],
+        'bread': ['طازج يومياً', 'مكونات طبيعية', 'خالي من المواد الحافظة', 'مناسب للفطور'],
+        'drinks': ['ساخن وطازج', 'نكهة غنية', 'مكونات طبيعية', 'مثالي مع المخبوزات']
+      };
+      
+      return featureMap[category] || ['جودة عالية', 'طعم مميز', 'مكونات طبيعية', 'مناسب للجميع'];
+    }
+
+    function updateBreadcrumb(product) {
+      const breadcrumb = document.querySelector('.breadcrumb-item.active');
+      breadcrumb.textContent = product.title;
+    }
+
+    function changeMainImage(thumbnail) {
+      const mainImage = document.getElementById('mainProductImage');
+      const thumbnails = document.querySelectorAll('.thumbnail-img');
+      
+      // Update main image
+      mainImage.src = thumbnail.src;
+      
+      // Update active thumbnail
+      thumbnails.forEach(thumb => thumb.classList.remove('active'));
+      thumbnail.classList.add('active');
+    }
+
+    function increaseQuantity() {
+      if (currentProduct && currentProduct.inStock && currentProduct.stock > quantity) {
+        quantity++;
+        document.getElementById('quantityDisplay').textContent = quantity;
+      }
+    }
+
+    function decreaseQuantity() {
+      if (quantity > 1) {
+        quantity--;
+        document.getElementById('quantityDisplay').textContent = quantity;
+      }
+    }
+
+    function addToCart() {
+      if (!currentProduct || !currentProduct.inStock) {
+        alert('المنتج غير متوفر حالياً');
+        return;
+      }
+      
+      alert(`تم إضافة ${quantity} قطعة من "${currentProduct.title}" إلى السلة`);
+      
+      // Update cart badge
+      const cartBadge = document.getElementById('cartBadge');
+      if (cartBadge) {
+        const currentCount = parseInt(cartBadge.textContent) || 0;
+        cartBadge.textContent = currentCount + quantity;
+        cartBadge.style.display = 'block';
+      }
+    }
+
+    function toggleFavorite() {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const favoriteIcon = document.getElementById('favoriteIcon');
+      
+      isFavorite = !isFavorite;
+      
+      if (isFavorite) {
+        favoriteBtn.classList.remove('btn-outline-danger');
+        favoriteBtn.classList.add('btn-danger');
+        favoriteIcon.className = 'bi bi-heart-fill';
+        alert('تم إضافة المنتج إلى المفضلة');
+      } else {
+        favoriteBtn.classList.remove('btn-danger');
+        favoriteBtn.classList.add('btn-outline-danger');
+        favoriteIcon.className = 'bi bi-heart';
+        alert('تم إزالة المنتج من المفضلة');
+      }
+      
+      // Update favorite badge
+      const favoriteBadge = document.getElementById('favoriteBadge');
+      if (favoriteBadge) {
+        const currentCount = parseInt(favoriteBadge.textContent) || 0;
+        favoriteBadge.textContent = isFavorite ? currentCount + 1 : Math.max(0, currentCount - 1);
+        favoriteBadge.style.display = favoriteBadge.textContent > 0 ? 'block' : 'none';
+      }
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProducts();
+    });
+  </script>
+
+</body>
+
+</html>

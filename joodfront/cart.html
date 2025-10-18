@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سلة التسوق | مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">3</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Cart Hero Section ======= -->
+  <section class="hero-section text-center py-4">
+    <div class="container">
+      <h1 class="hero-title mb-3">سلة التسوق</h1>
+      <p class="hero-subtitle">راجع طلبك وتأكد من المنتجات قبل المتابعة</p>
+    </div>
+  </section>
+
+  <!-- ======= Cart Content ======= -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Cart Items -->
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-light">
+              <h5 class="mb-0"><i class="bi bi-cart3 me-2"></i>منتجاتك المختارة</h5>
+            </div>
+            <div class="card-body p-0">
+              <!-- Cart Item 1 -->
+              <div class="cart-item border-bottom p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-2">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" 
+                         alt="خبز طازج" class="img-fluid rounded cart-item-image">
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="mb-1">خبز طازج يومي</h6>
+                    <p class="text-muted small mb-0">خبز طازج يُحضر يومياً من أجود أنواع الدقيق</p>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="quantity-controls d-flex align-items-center">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="decreaseQuantity(1)">
+                        <i class="bi bi-dash"></i>
+                      </button>
+                      <span class="mx-3 quantity" id="qty-1">2</span>
+                      <button class="btn btn-sm btn-outline-secondary" onclick="increaseQuantity(1)">
+                        <i class="bi bi-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <span class="price fw-bold" id="price-1">50 ج.م</span>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <button class="btn btn-outline-danger btn-sm" onclick="removeItem(1)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cart Item 2 -->
+              <div class="cart-item border-bottom p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-2">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" 
+                         alt="كيك الشوكولاتة" class="img-fluid rounded cart-item-image">
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="mb-1">كيك الشوكولاتة</h6>
+                    <p class="text-muted small mb-0">كيك بالشوكولاتة البلجيكية مع كريمة فانيليا</p>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="quantity-controls d-flex align-items-center">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="decreaseQuantity(2)">
+                        <i class="bi bi-dash"></i>
+                      </button>
+                      <span class="mx-3 quantity" id="qty-2">1</span>
+                      <button class="btn btn-sm btn-outline-secondary" onclick="increaseQuantity(2)">
+                        <i class="bi bi-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <span class="price fw-bold" id="price-2">64 ج.م</span>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <button class="btn btn-outline-danger btn-sm" onclick="removeItem(2)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cart Item 3 -->
+              <div class="cart-item p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-2">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb" 
+                         alt="معجنات" class="img-fluid rounded cart-item-image">
+                  </div>
+                  <div class="col-md-4">
+                    <h6 class="mb-1">معجنات متنوعة</h6>
+                    <p class="text-muted small mb-0">مجموعة من المعجنات الطازجة بالجبن والزعتر</p>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="quantity-controls d-flex align-items-center">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="decreaseQuantity(3)">
+                        <i class="bi bi-dash"></i>
+                      </button>
+                      <span class="mx-3 quantity" id="qty-3">3</span>
+                      <button class="btn btn-sm btn-outline-secondary" onclick="increaseQuantity(3)">
+                        <i class="bi bi-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <span class="price fw-bold" id="price-3">135 ج.م</span>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <button class="btn btn-outline-danger btn-sm" onclick="removeItem(3)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Continue Shopping -->
+          <div class="mt-4">
+            <a href="products.html" class="btn btn-outline-primary">
+              <i class="bi bi-arrow-right me-2"></i>متابعة التسوق
+            </a>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0"><i class="bi bi-receipt me-2"></i>ملخص الطلب</h5>
+            </div>
+            <div class="card-body">
+              <div class="order-summary">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>المنتجات (6 قطع)</span>
+                  <span id="subtotal">249 ج.م</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>رسوم التوصيل</span>
+                  <span class="text-success">مجاني</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>الضريبة</span>
+                  <span>0 ج.م</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between mb-3">
+                  <strong>المجموع الكلي</strong>
+                  <strong class="text-primary" id="total">249 ج.م</strong>
+                </div>
+              </div>
+
+              <!-- Delivery Options -->
+              <div class="delivery-options mb-4">
+                <h6 class="mb-3">خيارات التوصيل</h6>
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="delivery" id="pickup" checked>
+                  <label class="form-check-label" for="pickup">
+                    <strong>استلام من الفرع</strong>
+                    <small class="d-block text-muted">مجاني - خلال 30 دقيقة</small>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="delivery" id="delivery">
+                  <label class="form-check-label" for="delivery">
+                    <strong>توصيل للمنزل</strong>
+                    <small class="d-block text-muted">15 ج.م - خلال ساعة</small>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Checkout Button -->
+              <button class="btn btn-primary btn-lg w-100 mb-3" onclick="proceedToCheckout()">
+                <i class="bi bi-credit-card me-2"></i>إتمام الطلب
+              </button>
+
+              <!-- Payment Methods -->
+              <div class="text-center">
+                <small class="text-muted">طرق الدفع المتاحة</small>
+                <div class="mt-2">
+                  <i class="bi bi-credit-card text-primary me-2"></i>
+                  <i class="bi bi-phone text-success me-2"></i>
+                  <i class="bi bi-cash-coin text-warning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">مخبوزات جود</h5>
+          <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+            <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+            <li><a href="cart.html"><i class="bi bi-chevron-left"></i> سلة التسوق</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5 col-md-12">
+          <h5 class="footer-title">تواصل معنا</h5>
+          <div class="contact-info-grid">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>شارع الجمهورية، سوهاج، مصر</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <span><a href="tel:+201005551234">0100-555-1234</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>يوميًا: 8 ص - 11 م</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Cart JavaScript -->
+  <script>
+    // Cart functionality
+    const cartItems = {
+      1: { name: 'خبز طازج يومي', price: 25, quantity: 2 },
+      2: { name: 'كيك الشوكولاتة', price: 64, quantity: 1 },
+      3: { name: 'معجنات متنوعة', price: 45, quantity: 3 }
+    };
+
+    function updateQuantity(itemId, newQuantity) {
+      if (newQuantity < 1) {
+        removeItem(itemId);
+        return;
+      }
+      
+      cartItems[itemId].quantity = newQuantity;
+      document.getElementById(`qty-${itemId}`).textContent = newQuantity;
+      document.getElementById(`price-${itemId}`).textContent = `${cartItems[itemId].price * newQuantity} ج.م`;
+      updateTotals();
+    }
+
+    function increaseQuantity(itemId) {
+      const currentQty = parseInt(document.getElementById(`qty-${itemId}`).textContent);
+      updateQuantity(itemId, currentQty + 1);
+    }
+
+    function decreaseQuantity(itemId) {
+      const currentQty = parseInt(document.getElementById(`qty-${itemId}`).textContent);
+      updateQuantity(itemId, currentQty - 1);
+    }
+
+    function removeItem(itemId) {
+      if (confirm('هل أنت متأكد من حذف هذا المنتج من السلة؟')) {
+        delete cartItems[itemId];
+        document.querySelector(`[onclick="removeItem(${itemId})"]`).closest('.cart-item').remove();
+        updateTotals();
+      }
+    }
+
+    function updateTotals() {
+      let subtotal = 0;
+      let totalItems = 0;
+      
+      for (let itemId in cartItems) {
+        const item = cartItems[itemId];
+        subtotal += item.price * item.quantity;
+        totalItems += item.quantity;
+      }
+
+      document.getElementById('subtotal').textContent = `${subtotal} ج.م`;
+      document.getElementById('total').textContent = `${subtotal} ج.م`;
+      
+      // Update items count in summary
+      const itemsCountElement = document.querySelector('.order-summary .d-flex span:first-child');
+      if (itemsCountElement) {
+        itemsCountElement.textContent = `المنتجات (${totalItems} قطع)`;
+      }
+    }
+
+    function proceedToCheckout() {
+      const deliveryMethod = document.querySelector('input[name="delivery"]:checked').id;
+      const total = document.getElementById('total').textContent;
+      
+      if (deliveryMethod === 'pickup') {
+        alert(`سيتم إعداد طلبك للاستلام من الفرع\nالمجموع: ${total}\n\nسيتم التواصل معك خلال 10 دقائق`);
+      } else {
+        alert(`سيتم توصيل طلبك إلى منزلك\nالمجموع: ${total}\n\nسيتم التواصل معك خلال 10 دقائق`);
+      }
+    }
+
+    // Initialize cart on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      updateTotals();
+    });
+  </script>
+
+</body>
+
+</html>

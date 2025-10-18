@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عن جود | مخبوزات جود</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <!-- ======= Navbar ======= -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><span class="brand-mark">مخبوزات جود</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">عن جود</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <!-- Search Bar -->
+          <div class="search-container me-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن منتج..."
+                style="width: 200px;">
+              <button class="btn btn-outline-primary" type="button" onclick="performSearch()">
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+            <!-- Search Results Dropdown -->
+            <div class="search-results position-absolute bg-white border rounded shadow" id="searchResults"
+              style="display: none; z-index: 1000; width: 300px; max-height: 300px; overflow-y: auto;">
+              <!-- Search results will be populated here -->
+            </div>
+          </div>
+          <!-- Categories Dropdown -->
+          <div class="dropdown me-3">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap me-1"></i>الأقسام
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item" href="products.html?category=all">الكل</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cakes">كيك</a></li>
+              <li><a class="dropdown-item" href="products.html?category=donuts">دونات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=cookies">كوكيز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=tarts">ميني تارت</a></li>
+              <li><a class="dropdown-item" href="products.html?category=croissant">معجنات</a></li>
+              <li><a class="dropdown-item" href="products.html?category=bread">خبز</a></li>
+              <li><a class="dropdown-item" href="products.html?category=drinks">مشروبات</a></li>
+            </ul>
+          </div>
+          <!-- Cart Icon -->
+          <a href="cart.html" class="btn btn-outline-primary me-3 position-relative" id="cartIcon">
+            <i class="bi bi-cart3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" id="cartBadge">0</span>
+          </a>
+          <!-- Favorite Icon -->
+          <a href="favorites.html" class="btn btn-outline-danger me-3 position-relative" id="favoriteIcon">
+            <i class="bi bi-heart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="favoriteBadge">0</span>
+          </a>
+          <!-- User Icon -->
+          <a href="login.html" class="btn btn-outline-primary" id="userIcon">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======= Hero Section ======= -->
+  <section class="about-hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="hero-content">
+            <!-- Decorative Elements -->
+            <div class="hero-decoration mb-4">
+              <div class="decoration-line"></div>
+              <div class="decoration-icon">
+                <i class="bi bi-heart-fill"></i>
+              </div>
+              <div class="decoration-line"></div>
+            </div>
+            
+            <!-- Main Title -->
+            <h1 class="about-hero-title mb-4">
+              قصة <span class="brand-highlight">جــود</span> معكم
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="about-hero-subtitle mb-4">
+              منذ البداية، كان هدفنا إسعادكم بأشهى المخبوزات والحلويات الطازجة، محضرة بحب وإتقان من أجود المكونات الطبيعية.
+            </p>
+            
+            <!-- Key Features -->
+            <div class="hero-features mb-4">
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="feature-item">
+                    <i class="bi bi-award-fill text-warning"></i>
+                    <span>جودة عالية</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-item">
+                    <i class="bi bi-heart-fill text-danger"></i>
+                    <span>محضر بحب</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-item">
+                    <i class="bi bi-shield-check-fill text-success"></i>
+                    <span>مكونات طبيعية</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-item">
+                    <i class="bi bi-clock-fill text-primary"></i>
+                    <span>طازج يومياً</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="hero-actions">
+              <a href="products.html" class="btn btn-primary btn-lg me-3">
+                <i class="bi bi-shop me-2"></i>اكتشف منتجاتنا
+              </a>
+              <a href="#contact" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-telephone me-2"></i>تواصل معنا
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="hero-image-container">
+            <!-- Main Image -->
+            <div class="hero-main-image">
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80" alt="مخبوزات جود" class="img-fluid rounded-4 shadow-lg">
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="floating-elements">
+              <div class="floating-card floating-card-1">
+                <i class="bi bi-cake2"></i>
+                <span>حلويات مخصصة</span>
+              </div>
+              <div class="floating-card floating-card-2">
+                <i class="bi bi-truck"></i>
+                <span>توصيل سريع</span>
+              </div>
+              <div class="floating-card floating-card-3">
+                <i class="bi bi-star-fill"></i>
+                <span>جودة مضمونة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Background Decorative Elements -->
+    <div class="hero-bg-elements">
+      <div class="bg-circle bg-circle-1"></div>
+      <div class="bg-circle bg-circle-2"></div>
+      <div class="bg-circle bg-circle-3"></div>
+    </div>
+  </section>
+
+  <!-- ======= About Company Section ======= -->
+  <section class="about-company-section py-5">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="about-content">
+            <!-- Section Header -->
+            <div class="section-header mb-5">
+              <div class="section-badge mb-3">
+                <span class="badge-text">من نحن</span>
+              </div>
+              <h2 class="section-title-enhanced">قصة نجاحنا</h2>
+              <div class="section-divider"></div>
+            </div>
+            
+            <!-- Content -->
+            <div class="content-blocks">
+              <div class="content-block mb-4">
+                <p class="lead text-muted">
+                  <strong>مخبوزات جود</strong> هي علامة تجارية رائدة في مجال المخبوزات والحلويات في مصر، تأسست عام 2015 بهدف تقديم منتجات عالية الجودة تحمل نكهة الأصالة والطعم الأصيل.
+                </p>
+              </div>
+              
+              <div class="content-block mb-4">
+                <p class="text-muted">
+                  نحن نؤمن بأن كل منتج يجب أن يحمل بصمة الحب والإتقان، لذلك نستخدم فقط أجود المكونات الطبيعية ونتبع أعلى معايير النظافة والجودة في كل خطوة من خطوات الإنتاج.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Enhanced Features Grid -->
+            <div class="enhanced-features-grid">
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="feature-card">
+                    <div class="feature-icon">
+                      <i class="bi bi-award-fill"></i>
+                    </div>
+                    <div class="feature-content">
+                      <h6>جودة عالية</h6>
+                      <p>معايير الجودة العالمية</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-card">
+                    <div class="feature-icon">
+                      <i class="bi bi-heart-fill"></i>
+                    </div>
+                    <div class="feature-content">
+                      <h6>محضر بحب</h6>
+                      <p>كل منتج يحمل بصمة الحب</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-card">
+                    <div class="feature-icon">
+                      <i class="bi bi-shield-check-fill"></i>
+                    </div>
+                    <div class="feature-content">
+                      <h6>مكونات طبيعية</h6>
+                      <p>100% مكونات طبيعية</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="feature-card">
+                    <div class="feature-icon">
+                      <i class="bi bi-clock-fill"></i>
+                    </div>
+                    <div class="feature-content">
+                      <h6>طازج يومياً</h6>
+                      <p>منتجات طازجة كل يوم</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="about-image-container">
+            <div class="image-wrapper">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="مخبز جود" class="img-fluid rounded-4 shadow-lg">
+              <div class="image-overlay">
+                <div class="overlay-content">
+                  <i class="bi bi-play-circle-fill"></i>
+                  <span>شاهد قصة جود</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Floating Stats -->
+            <div class="floating-stats">
+              <div class="stat-card stat-1">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">سنوات من الخبرة</div>
+              </div>
+              <div class="stat-card stat-2">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">عميل سعيد</div>
+              </div>
+              <div class="stat-card stat-3">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">مكونات طبيعية</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Services Section ======= -->
+  <section class="services-section py-5">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <div class="section-badge mb-3">
+          <span class="badge-text">خدماتنا</span>
+        </div>
+        <h2 class="section-title-enhanced">ما نقدمه لك</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">نقدم مجموعة شاملة من الخدمات لتلبية جميع احتياجاتك</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-shop"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">مخبز يومي</h5>
+              <p class="service-description">خبز طازج يُحضر يومياً من أجود أنواع الدقيق، مع ضمان النظافة والجودة في كل رغيف.</p>
+              <div class="service-features">
+                <span class="feature-tag">طازج يومياً</span>
+                <span class="feature-tag">جودة عالية</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-cake2"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">حلويات مخصصة</h5>
+              <p class="service-description">كيكات وحلويات مخصصة حسب الطلب، مناسبة لجميع المناسبات والأعياد.</p>
+              <div class="service-features">
+                <span class="feature-tag">مخصص حسب الطلب</span>
+                <span class="feature-tag">جميع المناسبات</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-truck"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">توصيل سريع</h5>
+              <p class="service-description">خدمة توصيل سريعة وموثوقة لجميع أنحاء المدينة، مع ضمان وصول المنتجات طازجة.</p>
+              <div class="service-features">
+                <span class="feature-tag">توصيل سريع</span>
+                <span class="feature-tag">طازج مضمون</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-calendar-event"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">مناسبات خاصة</h5>
+              <p class="service-description">تنظيم حفلات ومناسبات خاصة مع قوائم متنوعة من المخبوزات والحلويات.</p>
+              <div class="service-features">
+                <span class="feature-tag">تنظيم كامل</span>
+                <span class="feature-tag">قوائم متنوعة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-people"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">فريق محترف</h5>
+              <p class="service-description">فريق من الخبازين المحترفين ذوي الخبرة العالية في صناعة المخبوزات والحلويات.</p>
+              <div class="service-features">
+                <span class="feature-tag">خبرة عالية</span>
+                <span class="feature-tag">محترفين</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-star"></i>
+            </div>
+            <div class="service-content">
+              <h5 class="service-title">جودة مضمونة</h5>
+              <p class="service-description">ضمان الجودة في كل منتج، مع استخدام مكونات طبيعية 100% واتباع أعلى معايير النظافة.</p>
+              <div class="service-features">
+                <span class="feature-tag">جودة مضمونة</span>
+                <span class="feature-tag">طبيعي 100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Goals Section ======= -->
+  <section class="goals-section py-5">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <div class="section-badge mb-3">
+          <span class="badge-text">أهدافنا ورؤيتنا</span>
+        </div>
+        <h2 class="section-title-enhanced">ما نؤمن به</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">القيم والمبادئ التي تقودنا نحو التميز</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="goal-card">
+            <div class="goal-icon">
+              <i class="bi bi-eye-fill"></i>
+            </div>
+            <div class="goal-content">
+              <h4 class="goal-title">رؤيتنا</h4>
+              <p class="goal-description">أن نكون الخيار الأول والأمثل لكل عائلة مصرية تبحث عن جودة وطعم أصيل في المخبوزات والحلويات، وأن نكون رائدين في مجال صناعة المخبوزات في المنطقة.</p>
+              <div class="goal-highlights">
+                <span class="highlight-item">الخيار الأول</span>
+                <span class="highlight-item">جودة أصيلة</span>
+                <span class="highlight-item">ريادة في المجال</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="goal-card">
+            <div class="goal-icon">
+              <i class="bi bi-bullseye"></i>
+            </div>
+            <div class="goal-content">
+              <h4 class="goal-title">رسالتنا</h4>
+              <p class="goal-description">تقديم منتجات مخبوزات وحلويات عالية الجودة تحمل نكهة الأصالة والطعم الأصيل، مع الالتزام بأعلى معايير النظافة والجودة لضمان رضا وسعادة عملائنا.</p>
+              <div class="goal-highlights">
+                <span class="highlight-item">جودة عالية</span>
+                <span class="highlight-item">طعم أصيل</span>
+                <span class="highlight-item">رضا العملاء</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="goal-card">
+            <div class="goal-icon">
+              <i class="bi bi-heart-fill"></i>
+            </div>
+            <div class="goal-content">
+              <h4 class="goal-title">قيمنا</h4>
+              <p class="goal-description">الجودة، الأمانة، الإتقان، والالتزام بالمعايير العالية في كل منتج نقدمه. نحن نؤمن بأن العمل بحب وإخلاص هو السبيل الوحيد لتحقيق التميز.</p>
+              <div class="goal-highlights">
+                <span class="highlight-item">الجودة</span>
+                <span class="highlight-item">الأمانة</span>
+                <span class="highlight-item">الإتقان</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="goal-card">
+            <div class="goal-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <div class="goal-content">
+              <h4 class="goal-title">أهدافنا</h4>
+              <p class="goal-description">التوسع في فتح فروع جديدة، تطوير منتجات مبتكرة، وبناء علاقات قوية مع عملائنا من خلال تقديم تجربة استهلاكية متميزة.</p>
+              <div class="goal-highlights">
+                <span class="highlight-item">التوسع</span>
+                <span class="highlight-item">الابتكار</span>
+                <span class="highlight-item">العلاقات</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Branches Section ======= -->
+  <section class="branches-section py-5">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <div class="section-badge mb-3">
+          <span class="badge-text">فروعنا</span>
+        </div>
+        <h2 class="section-title-enhanced">أين تجدنا</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">فروعنا المنتشرة في جميع أنحاء مصر</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="branch-card">
+            <div class="branch-header">
+              <div class="branch-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div class="branch-info">
+                <h5 class="branch-title">الفرع الرئيسي - سوهاج</h5>
+                <div class="branch-badge">الفرع الرئيسي</div>
+              </div>
+            </div>
+            <div class="branch-content">
+              <p class="branch-address">شارع الجمهورية، أمام مسجد النور، سوهاج</p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>0100-555-1234</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-clock"></i>
+                  <span>يومياً: 8 ص - 11 م</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-whatsapp"></i>
+                  <span>واتساب: 0100-555-1234</span>
+                </div>
+              </div>
+              <div class="branch-actions">
+                <a href="tel:01005551234" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-telephone me-1"></i>اتصل بنا
+                </a>
+                <a href="https://wa.me/201005551234" class="btn btn-success btn-sm" target="_blank">
+                  <i class="bi bi-whatsapp me-1"></i>واتساب
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="branch-card">
+            <div class="branch-header">
+              <div class="branch-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div class="branch-info">
+                <h5 class="branch-title">فرع الأقصر</h5>
+                <div class="branch-badge">فرع جديد</div>
+              </div>
+            </div>
+            <div class="branch-content">
+              <p class="branch-address">شارع الكورنيش، بجوار فندق شيراتون، الأقصر</p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>095-123-4567</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-clock"></i>
+                  <span>يومياً: 8 ص - 11 م</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-whatsapp"></i>
+                  <span>واتساب: 095-123-4567</span>
+                </div>
+              </div>
+              <div class="branch-actions">
+                <a href="tel:0951234567" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-telephone me-1"></i>اتصل بنا
+                </a>
+                <a href="https://wa.me/20951234567" class="btn btn-success btn-sm" target="_blank">
+                  <i class="bi bi-whatsapp me-1"></i>واتساب
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <div class="branch-card">
+            <div class="branch-header">
+              <div class="branch-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div class="branch-info">
+                <h5 class="branch-title">فرع أسيوط</h5>
+                <div class="branch-badge">قريباً</div>
+              </div>
+            </div>
+            <div class="branch-content">
+              <p class="branch-address">شارع جمال عبد الناصر، أمام جامعة أسيوط</p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>088-987-6543</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-clock"></i>
+                  <span>يومياً: 8 ص - 11 م</span>
+                </div>
+                <div class="contact-item">
+                  <i class="bi bi-whatsapp"></i>
+                  <span>واتساب: 088-987-6543</span>
+                </div>
+              </div>
+              <div class="branch-actions">
+                <a href="tel:0889876543" class="btn btn-outline-primary btn-sm">
+                  <i class="bi bi-telephone me-1"></i>اتصل بنا
+                </a>
+                <a href="https://wa.me/20889876543" class="btn btn-success btn-sm" target="_blank">
+                  <i class="bi bi-whatsapp me-1"></i>واتساب
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">
+            <i class="bi bi-building"></i>
+          </div>
+          <h5 class="coming-soon-title">فروع جديدة قريباً</h5>
+          <p class="coming-soon-text">نعمل على فتح فروع جديدة في محافظات أخرى قريباً</p>
+          <div class="coming-soon-cities">
+            <span class="city-tag">القاهرة</span>
+            <span class="city-tag">الإسكندرية</span>
+            <span class="city-tag">المنيا</span>
+            <span class="city-tag">قنا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FAQ Section ======= -->
+  <section class="faq-section py-5">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <div class="section-badge mb-3">
+          <span class="badge-text">الأسئلة الشائعة</span>
+        </div>
+        <h2 class="section-title-enhanced">أسئلتكم وإجاباتنا</h2>
+        <div class="section-divider mx-auto"></div>
+        <p class="section-subtitle">إجابات على أكثر الأسئلة شيوعاً</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="faq-container">
+            <div class="accordion" id="faqAccordion">
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    <div class="faq-icon">
+                      <i class="bi bi-clock"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">ما هي مواعيد عمل مخبوزات جود؟</span>
+                      <span class="faq-category">مواعيد العمل</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>نعمل يومياً من الساعة 8 صباحاً حتى 11 مساءً في جميع فروعنا، لضمان حصولكم على منتجات طازجة في أي وقت.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">يومياً</span>
+                        <span class="highlight-tag">8 ص - 11 م</span>
+                        <span class="highlight-tag">جميع الفروع</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    <div class="faq-icon">
+                      <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">هل تقدمون خدمة التوصيل؟</span>
+                      <span class="faq-category">خدمة التوصيل</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>نعم، نقدم خدمة التوصيل السريع لجميع أنحاء المدينة. يمكنكم الطلب عبر الهاتف أو واتساب، وسنوصل لكم المنتجات طازجة في أسرع وقت ممكن.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">توصيل سريع</span>
+                        <span class="highlight-tag">جميع أنحاء المدينة</span>
+                        <span class="highlight-tag">واتساب</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    <div class="faq-icon">
+                      <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">ما هي المكونات المستخدمة في منتجاتكم؟</span>
+                      <span class="faq-category">المكونات</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>نستخدم فقط المكونات الطبيعية 100%، من أجود أنواع الدقيق، البيض الطازج، الزبدة الطبيعية، والسكر الأبيض. لا نستخدم أي مواد حافظة أو مكونات صناعية.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">طبيعي 100%</span>
+                        <span class="highlight-tag">لا مواد حافظة</span>
+                        <span class="highlight-tag">مكونات طازجة</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    <div class="faq-icon">
+                      <i class="bi bi-cake2"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">هل يمكن طلب كيكات مخصصة للمناسبات؟</span>
+                      <span class="faq-category">حلويات مخصصة</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>بالطبع! نقدم خدمة الكيكات المخصصة لجميع المناسبات. يرجى التواصل معنا قبل 48 ساعة على الأقل لضمان إعداد الكيك حسب مواصفاتكم.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">مخصص حسب الطلب</span>
+                        <span class="highlight-tag">جميع المناسبات</span>
+                        <span class="highlight-tag">48 ساعة مسبقاً</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    <div class="faq-icon">
+                      <i class="bi bi-credit-card"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">ما هي طرق الدفع المتاحة؟</span>
+                      <span class="faq-category">طرق الدفع</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>نقبل الدفع نقداً، وبطاقات الائتمان، والدفع الإلكتروني. كما يمكن الدفع عند الاستلام للتوصيل.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">نقداً</span>
+                        <span class="highlight-tag">بطاقات الائتمان</span>
+                        <span class="highlight-tag">دفع عند الاستلام</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                    <div class="faq-icon">
+                      <i class="bi bi-heart-pulse"></i>
+                    </div>
+                    <div class="faq-content">
+                      <span class="faq-question">هل تقدمون منتجات خالية من الجلوتين؟</span>
+                      <span class="faq-category">منتجات صحية</span>
+                    </div>
+                  </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <div class="faq-answer">
+                      <p>نعم، نقدم مجموعة من المنتجات الخالية من الجلوتين للأشخاص الذين يعانون من حساسية القمح. يرجى إبلاغنا عند الطلب.</p>
+                      <div class="faq-highlights">
+                        <span class="highlight-tag">خالي من الجلوتين</span>
+                        <span class="highlight-tag">مناسب للحساسية</span>
+                        <span class="highlight-tag">إبلاغ مسبق</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="row gy-4 align-items-start">
+        <!-- About Section -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-title">مخبوزات جود</h5>
+          <p class="footer-text">نُقدّم أشهى المخبوزات الطازجة يوميًا من أجود المكونات الطبيعية.</p>
+          <div class="social-links">
+            <a href="https://facebook.com" target="_blank" aria-label="فيسبوك"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank" aria-label="انستجرام"><i class="bi bi-instagram"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="تويتر"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://wa.me/201005551234" target="_blank" aria-label="واتساب"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://tiktok.com" target="_blank" aria-label="تيك توك"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6">
+          <h5 class="footer-title">روابط سريعة</h5>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="bi bi-chevron-left"></i> الرئيسية</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-left"></i> عن جود</a></li>
+            <li><a href="products.html"><i class="bi bi-chevron-left"></i> منتجاتنا</a></li>
+            <li><a href="#contact"><i class="bi bi-chevron-left"></i> تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5 col-md-12">
+          <h5 class="footer-title">تواصل معنا</h5>
+          <div class="contact-info-grid">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>شارع الجمهورية، سوهاج، مصر</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <span><a href="tel:+201005551234">0100-555-1234</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <span><a href="mailto:info@joodbakery.com">info@joodbakery.com</a></span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>يوميًا: 8 ص - 11 م</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider">
+      
+      <div class="footer-bottom">
+        <p class="mb-0">© 2025 جميع الحقوق محفوظة لـ <strong>مخبوزات جود</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/201005551234" class="whatsapp-cta" target="_blank" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
